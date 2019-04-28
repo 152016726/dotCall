@@ -1,0 +1,167 @@
+﻿javascript代码规范
+1、 声明与引用
+a. 所有语句都必须有 ; 结尾
+b. 变量必须先定义后使用
+c. 支持es6统一使用let const 不使用 var
+d. 模块头部尽量使用import 不使用require
+
+2、 命名
+1).camel命名法(骆驼命名法)，形如thisIsAnApple 
+2).pascal命名法(帕斯卡命名法)，形如ThisIsAnApple
+3).下划线命名法，形如this_is_an_apple 
+根据不同类型的内容，必须严格采用如下的命名法： 
+b).变量名：必须使用camel命名法
+c).参数名：必须使用camel命名法 
+d).函数名：必须使用camel命名法  函数名应当用动宾短语；get set do deal save remove submit
+e).方法/属性：必须使用camel命名法  boolean类型的应当使用is、has等起头，表示其类型；
+f).私有（保护）成员：必须以下划线_开头
+g).常量名：必须使用全部大写的下划线命名法，如IS_DEBUG_ENABLED
+h).类名：必须使用pascal命名法  类名应当用名词。
+
+临时变量命名
+建议使用匈牙利命名法
+在匈牙利命名法中，一个变量名由一个或多个小写字母开始，这些字母有助于记忆变量的类型和用途，紧跟着的就是程序员选择的任何名称。这个后半部分的首字母可以大写，以区别前面的类型指示字母。
+
+var arrPerson = []; // Array数组
+var objBtn = document.getElementById('btn'); //Object对象
+var fnName = function () {}; // function函数
+var strName = "w3cplus"; // string字符串
+
+JavaScript变量名中代表数据类型都有对应的字线，如下所示：
+
+str: 表示字符串String
+num: 表示整型Int(它是Number中的整数类型)
+fl: 表示浮点Float(它是Number中的小数类型)
+bl: 表示布尔Boolean
+arr: 表示数组Array
+obj: 表示对象Object
+fn: 不示函数Function
+re: 表示正则Regular Expression
+$: 表示变量存放jquery对象
+
+
+3. 注释
+3.1 单行注释
+说明：单行注释以两个斜线开始，以行尾结束。
+
+语法：// 这是单行注释
+
+使用方式：
+
+① 单独一行：//(双斜线)与注释文字之间保留一个空格。
+
+② 在代码后面添加注释：//(双斜线)与代码之间保留一个空格，并且//(双斜线)与注释文字之间保留一个空格。
+
+③ 注释代码：//(双斜线)与代码之间保留一个空格。
+
+示例：
+
+// 调用了一个函数；1)单独在一行
+setTitle();
+ 
+var maxCount = 10; // 设置最大量；2)在代码后面注释
+ 
+// setName(); // 3)注释代码
+
+3.2 多行注释
+说明：以/*开头，*/结尾
+
+语法：/* 注释说明 */
+
+使用方法：
+
+① 若开始(/*)和结束(*/)都在一行，推荐采用单行注释。
+
+② 若至少三行注释时，第一行为/*，最后行为*/，其他行以*开始，并且注释文字与*保留一个空格。
+
+示例：
+
+/*
+ * 代码执行到这里后会调用setTitle()函数
+ * setTitle()：设置title的值
+ */
+setTitle();
+
+3.3 函数(方法)注释
+说明：函数(方法)注释也是多行注释的一种，但是包含了特殊的注释要求，参照 javadoc(百度百科)，JSDoc
+
+语法：
+/** 
+* 函数说明 
+* @关键字 
+*/
+
+注释名		语法										含义							示例
+@param		@param 	参数名 {参数类型}  描述信息			描述参数的信息					@param name {String} 传入名称
+@return		@return {返回类型} 描述信息					描述返回值的信息				@return {Boolean} true:可执行;false:不可执行
+@author		@author 作者信息 [附属信息：如邮箱、日期]	描述此函数作者的信息			@author 张三 2015/07/21 
+@version	@version XX.XX.XX							描述此函数的版本号				@version 1.0.3
+@example	@example 示例代码							演示函数的使用					@example setTitle('测试')
+
+示例：
+/**
+ * 准备投注，需要校验投注项目相关内容
+ * @param balance 余额
+ */
+betOrder: function(balance){
+    _o.betOrder.call(this, balance);
+}
+
+4.1 其他编码习惯（ESlint插件）
+a. 避免内部函数，方便test，异常调试等
+
+Best Practices
+这些规则是关于最佳实践的，帮助你避免一些问题:
+
+b. 要求将变量声明放在它们作用域的顶部 (vars-on-top)
+c. 禁止使用魔术数字(no-magic-numbers)
+d. 禁止出现多个空格(no-multi-spaces)
+e. 禁止多行字符串 (no-multi-str)
+f. 禁止在返回语句中赋值 (no-return-assign)
+g. 禁止没有必要的字符拼接 (no-useless-concat)
+h. 禁止变量声明覆盖外层作用域的变量 (no-shadow)
+i. 关键字不能被遮蔽 (no-shadow-restricted-names)
+
+Stylistic Issues
+这些规则是关于风格指南的，而且是非常主观的：
+a. 强制在代码块中开括号前和闭括号后有空格 (block-spacing) always
+b. 大括号风格要求 (brace-style)  1tbs , "allowSingleLine": true (默认 false) 允许块的开括号和闭括号在 同一行
+c. 要求使用骆驼拼写法 (camelcase)  "properties": "always"
+d. 禁止使用拖尾逗号 (comma-dangle)  "comma-dangle": ["error", "never"]
+e. 强制在逗号周围使用空格 (comma-spacing)  comma-spacing: ["error", { "before": false, "after": true }]  逗号前有空格，后无空格
+f. 逗号风格 (comma-style)  将逗号放置在当前行的末尾  comma-style: ["error", "last"]
+g. 要求一致的 This (consistent-this) consistent-this: ["error", "self"]
+h. 强制使用一致的缩进 (indent) { "indent": ["error", 2] }
+i. 强制在对象字面量的键和值之间使用一致的空格 (key-spacing)  key-spacing: ["error", { "beforeColon": false, "afterColon": true }]
+j. 强制使用一致的换行符风格 (linebreak-style) linebreak-style: ["error", "unix"]
+
+
+k. 强制块语句的最大可嵌套深度 (max-depth) max-depth: ["error", 5]
+l. 限制函数定义中最大参数个数(max-params) max-params: ["error", 3]
+m. 要求构造函数首字母大写 (new-cap) new-cap: ["error", { "newIsCap": true }]
+n. 要求调用无参构造函数时带括号 (new-parens) new-parens: "error"
+o. 要求方法链中每个调用都有一个换行符 (newline-per-chained-call)  newline-per-chained-call: ["error", { "ignoreChainWithDepth": 2 }]  同一行最多调用两次
+p. 禁止 if 语句作为唯一语句出现在 else 语句块中 (no-lonely-if) no-lonely-if: "error"
+q. 禁止使用嵌套的三元表达式 (no-nested-ternary) no-nested-ternary: "error"
+r. 禁止可以表达为更简单结构的三元操作符 (no-unneeded-ternary)  no-unneeded-ternary: "error"
+s. 强制操作符使用一致的换行符风格 (operator-linebreak)  operator-linebreak: ["error", "after"]
+t. 要求使用 JSDoc 注释 (require-jsdoc)  {
+    "require-jsdoc": ["error", {
+        "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true,
+            "ArrowFunctionExpression": false,
+            "FunctionExpression": false
+        }
+    }]
+}
+u. 要求或禁止使用分号代替 ASI (semi)  semi: ["error", "always"]
+v. 要求中缀操作符周围有空格 (space-infix-ops)  space-infix-ops: "error"
+
+
+
+
+
+
+
